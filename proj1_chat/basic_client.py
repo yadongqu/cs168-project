@@ -4,16 +4,18 @@ import select
 
 
 def basic_client():
-    if(len(sys.argv) < 3):
-        print 'Usage : python chat_client.py hostname port'
+    if(len(sys.argv) < 4):
+        print 'Usage : python chat_client.py username hostname port'
         sys.exit()
-    host = sys.argv[1]
-    port = int(sys.argv[2])
+    name = sys.argv[1]
+    host = sys.argv[2]
+    port = int(sys.argv[3])
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(2)
     try:
         s.connect((host, port))
+        s.send(name)
     except:
         print 'Uable to connect'
         sys.exit()
